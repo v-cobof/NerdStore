@@ -1,4 +1,4 @@
-using NerdStore.Core;
+using NerdStore.Core.DomainObjects;
 using Xunit;
 
 namespace NerdStore.Catalogo.Domain.Tests

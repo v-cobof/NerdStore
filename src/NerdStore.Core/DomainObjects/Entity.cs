@@ -1,4 +1,4 @@
-﻿namespace NerdStore.Core
+﻿namespace NerdStore.Core.DomainObjects
 {
     public abstract class Entity
     {
@@ -6,7 +6,7 @@
 
         public Entity()
         {
-            Id = Guid.NewGuid(); 
+            Id = Guid.NewGuid();
         }
 
         public override bool Equals(object obj)
@@ -36,7 +36,7 @@
 
         public override int GetHashCode()
         {
-            return (GetType().GetHashCode() * 437) + Id.GetHashCode();
+            return GetType().GetHashCode() * 437 + Id.GetHashCode();
         }
 
         public override string ToString()

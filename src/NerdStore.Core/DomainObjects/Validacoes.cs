@@ -5,12 +5,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace NerdStore.Core
+namespace NerdStore.Core.DomainObjects
 {
     public class Validacoes
     {
         public static void ValidarSeIgual(object obj1, object obj2, string msg)
-        {        
+        {
             if (obj1.Equals(obj2))
                 throw new DomainException(msg);
         }
@@ -39,19 +39,19 @@ namespace NerdStore.Core
         {
             var regex = new Regex(pattern);
 
-            if(!regex.IsMatch(valor))
+            if (!regex.IsMatch(valor))
                 throw new DomainException(msg);
         }
 
         public static void ValidarSeVazio(string valor, string msg)
         {
-            if(valor is null || valor.Trim().Length == 0)
+            if (valor is null || valor.Trim().Length == 0)
                 throw new DomainException(msg);
         }
 
         public static void ValidarSeNulo(object obj, string msg)
         {
-            if(obj is null)
+            if (obj is null)
                 throw new DomainException(msg);
         }
 
