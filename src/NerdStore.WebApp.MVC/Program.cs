@@ -4,6 +4,8 @@ using NerdStore.Catalogo.Application.AutoMapper;
 using NerdStore.WebApp.MVC.Data;
 using AutoMapper;
 using MediatR;
+using NerdStore.Catalogo.Data;
+using NerdStore.WebApp.MVC.Setup;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,12 +15,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddDbContext<CatalogoContext>(options =>
+    options.UseSqlServer(connectionString));
+
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddAutoMapper(typeof(DomainToViewModelMappingProfile), typeof(ViewModelToDomainMappingProfile));
 builder.Services.AddMediatR(typeof(Program));
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 
