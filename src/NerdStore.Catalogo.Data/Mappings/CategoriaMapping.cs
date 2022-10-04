@@ -17,7 +17,7 @@ namespace NerdStore.Catalogo.Data.Mappings
             // Relação 1:N => 1 Categoria : N Produtos
             builder.HasMany(c => c.Produtos)
                 .WithOne(p => p.Categoria)
-                .HasForeignKey(p => p.Id);
+                .HasForeignKey(p => p.CategoriaId);
         }
     }
 }

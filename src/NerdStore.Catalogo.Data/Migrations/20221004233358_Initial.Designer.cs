@@ -12,7 +12,7 @@ using NerdStore.Catalogo.Data;
 namespace NerdStore.Catalogo.Data.Migrations
 {
     [DbContext(typeof(CatalogoContext))]
-    [Migration("20221004133955_Initial")]
+    [Migration("20221004233358_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,6 +45,7 @@ namespace NerdStore.Catalogo.Data.Migrations
             modelBuilder.Entity("NerdStore.Catalogo.Domain.Produto", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<bool>("Ativo")
@@ -76,6 +77,8 @@ namespace NerdStore.Catalogo.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoriaId");
+
                     b.ToTable("Produtos", (string)null);
                 });
 
@@ -83,7 +86,7 @@ namespace NerdStore.Catalogo.Data.Migrations
                 {
                     b.HasOne("NerdStore.Catalogo.Domain.Categoria", "Categoria")
                         .WithMany("Produtos")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("CategoriaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
