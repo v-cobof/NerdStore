@@ -8,7 +8,7 @@ namespace NerdStore.Catalogo.Domain
         public int Codigo { get; private set; }
         public ICollection<Produto> Produtos { get; private set; }
 
-        public Categoria()
+        protected Categoria()
         {
 
         }
