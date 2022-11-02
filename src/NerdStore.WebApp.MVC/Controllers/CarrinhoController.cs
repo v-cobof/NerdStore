@@ -5,17 +5,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using NerdStore.Catalogo.Application.Services;
-using NerdStore.Core.Communication.Mediator;
-using NerdStore.Core.Messages.CommonMessages.Notifications;
 using NerdStore.Vendas.Application.Commands;
-using NerdStore.Vendas.Application.Queries;
-using NerdStore.Vendas.Application.Queries.ViewModels;
+using NerdStore.Core.Bus;
 
 namespace NerdStore.WebApp.MVC.Controllers
 {
-    public class CarrinhoController : Controller
+    public class CarrinhoController : ControllerBase
     {
         private readonly IProdutoAppService _produtoAppService;
+        private readonly IMediatorHandler _mediatorHandler;
 
         public CarrinhoController(INotificationHandler<DomainNotification> notifications,
                                   IProdutoAppService produtoAppService,
