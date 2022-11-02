@@ -7,6 +7,7 @@ using MediatR;
 using NerdStore.Catalogo.Application.Services;
 using NerdStore.Vendas.Application.Commands;
 using NerdStore.Core.Communication.Mediator;
+using NerdStore.Core.Messages.CommonMessages.Notifications;
 
 namespace NerdStore.WebApp.MVC.Controllers
 {
