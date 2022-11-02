@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MediatR;
 using NerdStore.Catalogo.Application.Services;
 using NerdStore.Vendas.Application.Commands;
-using NerdStore.Core.Bus;
+using NerdStore.Core.Communication.Mediator;
 
 namespace NerdStore.WebApp.MVC.Controllers
 {
