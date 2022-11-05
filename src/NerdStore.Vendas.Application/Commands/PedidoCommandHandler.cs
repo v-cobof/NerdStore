@@ -12,11 +12,11 @@ using NerdStore.Vendas.Domain;
 namespace NerdStore.Vendas.Application.Commands
 {
     public class PedidoCommandHandler :
-        IRequestHandler<AdicionarItemPedidoCommand, bool>
-        /*IRequestHandler<AtualizarItemPedidoCommand, bool>,
+        IRequestHandler<AdicionarItemPedidoCommand, bool>,
+        IRequestHandler<AtualizarItemPedidoCommand, bool>,
         IRequestHandler<RemoverItemPedidoCommand, bool>,
-        IRequestHandler<AplicarVoucherPedidoCommand, bool>,
-        IRequestHandler<IniciarPedidoCommand, bool>,
+        IRequestHandler<AplicarVoucherPedidoCommand, bool>
+        /*IRequestHandler<IniciarPedidoCommand, bool>,
         IRequestHandler<FinalizarPedidoCommand, bool>,
         IRequestHandler<CancelarProcessamentoPedidoEstornarEstoqueCommand, bool>,
         IRequestHandler<CancelarProcessamentoPedidoCommand, bool>*/
@@ -65,7 +65,7 @@ namespace NerdStore.Vendas.Application.Commands
             pedido.AdicionarEvento(new PedidoItemAdicionadoEvent(pedido.ClienteId, pedido.Id, message.ProdutoId, message.Nome, message.ValorUnitario, message.Quantidade));
             return await _pedidoRepository.UnitOfWork.Commit();
         }
-        /*
+        
         public async Task<bool> Handle(AtualizarItemPedidoCommand message, CancellationToken cancellationToken)
         {
             if (!ValidarComando(message)) return false;
@@ -145,6 +145,7 @@ namespace NerdStore.Vendas.Application.Commands
             }
 
             var voucherAplicacaoValidation = pedido.AplicarVoucher(voucher);
+
             if (!voucherAplicacaoValidation.IsValid)
             {
                 foreach (var error in voucherAplicacaoValidation.Errors)
@@ -162,6 +163,7 @@ namespace NerdStore.Vendas.Application.Commands
             return await _pedidoRepository.UnitOfWork.Commit();
         }
 
+        /*
         public async Task<bool> Handle(IniciarPedidoCommand message, CancellationToken cancellationToken)
         {
             if (!ValidarComando(message)) return false;
