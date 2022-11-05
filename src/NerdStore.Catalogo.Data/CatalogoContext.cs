@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Core.Data;
+using NerdStore.Core.Messages;
 
 namespace NerdStore.Catalogo.Data
 {
@@ -20,6 +21,8 @@ namespace NerdStore.Catalogo.Data
             {
                 property.SetColumnType("varchar(100)");
             }
+
+            modelBuilder.Ignore<Event>();
 
             // busca os mappings no assembly para entidades que coloquei nesse contexto
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CatalogoContext).Assembly);

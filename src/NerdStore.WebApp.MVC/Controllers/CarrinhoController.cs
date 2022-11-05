@@ -18,12 +18,12 @@ namespace NerdStore.WebApp.MVC.Controllers
 
         public CarrinhoController(INotificationHandler<DomainNotification> notifications,
                                   IProdutoAppService produtoAppService,
-                                  IMediatorHandler mediatorHandler,
-                                  IPedidoQueries pedidoQueries) : base(notifications, mediatorHandler)
+                                  IMediatorHandler mediatorHandler
+                                  /*IPedidoQueries pedidoQueries*/) : base(notifications, mediatorHandler)
         {
             _produtoAppService = produtoAppService;
             _mediatorHandler = mediatorHandler;
-            _pedidoQueries = pedidoQueries;
+            //_pedidoQueries = pedidoQueries;
         }
 
         public IActionResult Index()
