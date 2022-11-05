@@ -40,13 +40,10 @@ namespace NerdStore.Vendas.Data
                 }
             }
 
-            /*var sucesso = await base.SaveChangesAsync() > 0;
+            var sucesso = await base.SaveChangesAsync() > 0;
             if(sucesso) await _mediatorHandler.PublicarEventos(this);
 
-            return sucesso;*/
-
-            await _mediatorHandler.PublicarEventos(this);
-            return await base.SaveChangesAsync() > 0;
+            return sucesso;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
