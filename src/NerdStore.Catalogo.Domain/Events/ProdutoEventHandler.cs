@@ -18,10 +18,11 @@ namespace NerdStore.Catalogo.Domain.Events
         private readonly IEstoqueService _estoqueService;
         private readonly IMediatorHandler _mediatorHandler;
 
-        public ProdutoEventHandler(IProdutoRepository produtoRepository, IEstoqueService estoqueService)
+        public ProdutoEventHandler(IProdutoRepository produtoRepository, IEstoqueService estoqueService, IMediatorHandler mediatorHandler)
         {
             _produtoRepository = produtoRepository;
             _estoqueService = estoqueService;
+            _mediatorHandler = mediatorHandler;
         }
 
         public async Task Handle(ProdutoEstoqueBaixoEvent mensagem, CancellationToken cancellationToken)

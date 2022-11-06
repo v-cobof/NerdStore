@@ -219,7 +219,12 @@ namespace NerdStore.Vendas.Application.Commands
             }
 
             var itensList = new List<Item>();
-            pedido.PedidoItems.ToList().ForEach(i => itensList.Add(new Item { Id = i.ProdutoId, Quantidade = i.Quantidade }));
+
+            foreach(var item in pedido.PedidoItems)
+            {
+                itensList.Add(new Item { Id = item.ProdutoId, Quantidade = item.Quantidade });
+            }
+
             var listaProdutosPedido = new ListaProdutosPedido { PedidoId = pedido.Id, Itens = itensList };
 
             pedido.AdicionarEvento(new PedidoProcessamentoCanceladoEvent(pedido.Id, pedido.ClienteId, listaProdutosPedido));

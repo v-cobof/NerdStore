@@ -60,9 +60,10 @@ namespace NerdStore.Catalogo.Data.Repository
 
         public async Task<Produto> ObterPorId(Guid Id)
         {
-            return await _context.Produtos
+            /*return await _context.Produtos
                 .AsNoTracking()
-                .FirstOrDefaultAsync(p => p.Id == Id);
+                .FirstOrDefaultAsync(p => p.Id == Id);*/
+            return await _context.Produtos.FindAsync(Id);
         }
 
         public async Task<IEnumerable<Produto>> ObterTodos()
