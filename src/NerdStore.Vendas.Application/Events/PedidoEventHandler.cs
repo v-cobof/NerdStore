@@ -11,9 +11,9 @@ namespace NerdStore.Vendas.Application.Events
         INotificationHandler<PedidoRascunhoIniciadoEvent>,
         INotificationHandler<PedidoItemAdicionadoEvent>,
         INotificationHandler<PedidoProdutoAtualizadoEvent>,
-        INotificationHandler<PedidoEstoqueRejeitadoEvent>/*,
+        INotificationHandler<PedidoEstoqueRejeitadoEvent>,
         INotificationHandler<PedidoPagamentoRealizadoEvent>,
-        INotificationHandler<PedidoPagamentoRecusadoEvent>*/
+        INotificationHandler<PedidoPagamentoRecusadoEvent>
     {
 
         private readonly IMediatorHandler _mediatorHandler;
@@ -38,12 +38,11 @@ namespace NerdStore.Vendas.Application.Events
             return Task.CompletedTask;
         }
 
-        public Task Handle(PedidoEstoqueRejeitadoEvent message, CancellationToken cancellationToken)
+        public async Task Handle(PedidoEstoqueRejeitadoEvent message, CancellationToken cancellationToken)
         {
-            return Task.CompletedTask;
-            //await _mediatorHandler.EnviarComando(new CancelarProcessamentoPedidoCommand(message.PedidoId, message.ClienteId));
+            await _mediatorHandler.EnviarComando(new CancelarProcessamentoPedidoCommand(message.PedidoId, message.ClienteId));
         }
-        /*
+        
         public async Task Handle(PedidoPagamentoRealizadoEvent message, CancellationToken cancellationToken)
         {
             await _mediatorHandler.EnviarComando(new FinalizarPedidoCommand(message.PedidoId, message.ClienteId));
@@ -52,6 +51,6 @@ namespace NerdStore.Vendas.Application.Events
         public async Task Handle(PedidoPagamentoRecusadoEvent message, CancellationToken cancellationToken)
         {
             await _mediatorHandler.EnviarComando(new CancelarProcessamentoPedidoEstornarEstoqueCommand(message.PedidoId, message.ClienteId));
-        }*/
+        }
     }
 }

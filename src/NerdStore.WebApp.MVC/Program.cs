@@ -7,6 +7,7 @@ using MediatR;
 using NerdStore.Catalogo.Data;
 using NerdStore.WebApp.MVC.Setup;
 using NerdStore.Vendas.Data;
+using NerdStore.Pagamentos.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,9 @@ builder.Services.AddDbContext<CatalogoContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDbContext<VendasContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDbContext<PagamentoContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

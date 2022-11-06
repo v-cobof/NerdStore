@@ -18,10 +18,10 @@ namespace NerdStore.Vendas.Application.Commands
         IRequestHandler<AtualizarItemPedidoCommand, bool>,
         IRequestHandler<RemoverItemPedidoCommand, bool>,
         IRequestHandler<AplicarVoucherPedidoCommand, bool>,
-        IRequestHandler<IniciarPedidoCommand, bool>/*
+        IRequestHandler<IniciarPedidoCommand, bool>,
         IRequestHandler<FinalizarPedidoCommand, bool>,
         IRequestHandler<CancelarProcessamentoPedidoEstornarEstoqueCommand, bool>,
-        IRequestHandler<CancelarProcessamentoPedidoCommand, bool>*/
+        IRequestHandler<CancelarProcessamentoPedidoCommand, bool>
         
     {
         private readonly IPedidoRepository _pedidoRepository;
@@ -191,7 +191,7 @@ namespace NerdStore.Vendas.Application.Commands
             _pedidoRepository.Atualizar(pedido);
             return await _pedidoRepository.UnitOfWork.Commit();
         }
-        /*
+        
         public async Task<bool> Handle(FinalizarPedidoCommand message, CancellationToken cancellationToken)
         {
             var pedido = await _pedidoRepository.ObterPorId(message.PedidoId);
@@ -219,7 +219,7 @@ namespace NerdStore.Vendas.Application.Commands
             }
 
             var itensList = new List<Item>();
-            pedido.PedidoItems.ForEach(i => itensList.Add(new Item { Id = i.ProdutoId, Quantidade = i.Quantidade }));
+            pedido.PedidoItems.ToList().ForEach(i => itensList.Add(new Item { Id = i.ProdutoId, Quantidade = i.Quantidade }));
             var listaProdutosPedido = new ListaProdutosPedido { PedidoId = pedido.Id, Itens = itensList };
 
             pedido.AdicionarEvento(new PedidoProcessamentoCanceladoEvent(pedido.Id, pedido.ClienteId, listaProdutosPedido));
@@ -242,7 +242,7 @@ namespace NerdStore.Vendas.Application.Commands
 
             return await _pedidoRepository.UnitOfWork.Commit();
         }
-        */
+        
         private bool ValidarComando(Command message)
         {
             if (message.EhValido()) return true;
