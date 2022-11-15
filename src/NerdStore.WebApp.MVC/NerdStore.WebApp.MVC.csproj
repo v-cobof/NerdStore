@@ -50,9 +50,4 @@
     <ProjectReference Include="..\NersStore.Pagamentos.AntiCorruption\NerdStore.Pagamentos.AntiCorruption.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Eventos\" />
-    <Folder Include="Views\Pedido\" />
-  </ItemGroup>
-
 </Project>
