@@ -5,6 +5,9 @@ namespace NerdStore.Vendas.Domain
 {
     public class Pedido : Entity, IAggregateRoot
     {
+        public static readonly int MAX_UNIDADES_ITEM = 15;
+        public static readonly int MIN_UNIDADES_ITEM = 1;
+
         public int Codigo { get; private set; }
         public Guid ClienteId { get; private set; }
         public Guid? VoucherId { get; private set; }
@@ -87,8 +90,6 @@ namespace NerdStore.Vendas.Domain
 
         public void AdicionarItem(PedidoItem item)
         {
-            if (!item.EhValido()) return;
-
             item.AssociarPedido(Id);
 
             if (PedidoItemExistente(item))

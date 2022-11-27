@@ -19,6 +19,8 @@ namespace NerdStore.Vendas.Domain
             ProdutoNome = produtoNome;
             Quantidade = quantidade;
             ValorUnitario = valorUnitario;
+
+            Validar();
         }
 
         // EF
@@ -47,6 +49,15 @@ namespace NerdStore.Vendas.Domain
         public override bool EhValido()
         {
             return true;
+        }
+
+        private void Validar()
+        {
+            if (Quantidade > Pedido.MAX_UNIDADES_ITEM)
+                throw new DomainException($"A quantidade de item não deve ser superior à {Pedido.MAX_UNIDADES_ITEM}");
+
+            if (Quantidade < Pedido.MIN_UNIDADES_ITEM)
+                throw new DomainException($"A quantidade de item não deve ser inferior à {Pedido.MIN_UNIDADES_ITEM}");
         }
     }
 }
