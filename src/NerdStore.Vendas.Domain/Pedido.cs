@@ -96,8 +96,9 @@ namespace NerdStore.Vendas.Domain
                 var itemExistente = _pedidoItems.FirstOrDefault(p => p.ProdutoId == item.ProdutoId);
                 itemExistente.AdicionarUnidades(item.Quantidade);
                 item = itemExistente;
-
+                
                 _pedidoItems.Remove(itemExistente);
+                // removo o item da lista, pq vou adicionar ele de novo abaixo, e de outro modo teria q fazer uma atualização
             }
 
             _pedidoItems.Add(item);
