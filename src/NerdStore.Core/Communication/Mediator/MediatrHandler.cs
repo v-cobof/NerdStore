@@ -30,8 +30,9 @@ namespace NerdStore.Core.Communication.Mediator
         {
             await _mediator.Publish(evento);
 
-            if(!evento.GetType().BaseType.Name.Equals("DomainEvent"))
-                await _eventSourcingRepository.SalvarEvento(evento);
+            // Caso o Event Store não esteja rodando, é necessário deixar comentado
+            //if(!evento.GetType().BaseType.Name.Equals("DomainEvent"))
+            //    await _eventSourcingRepository.SalvarEvento(evento);
         }
 
         public async Task PublicarNotificacao<T>(T notificacao) where T : DomainNotification
