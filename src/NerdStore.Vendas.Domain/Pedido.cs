@@ -44,6 +44,7 @@ namespace NerdStore.Vendas.Domain
 
             Voucher = voucher;
             VoucherUtilizado = true;
+
             CalcularValorPedido();
 
             return validationResult;

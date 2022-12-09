@@ -163,7 +163,7 @@ namespace NerdStore.Vendas.Domain.Tests
             // Assert
             Assert.Equal(totalPedido, pedido.ValorTotal);
         }
-        /*
+        
         [Fact(DisplayName = "Aplicar voucher válido")]
         [Trait("Categoria", "Vendas - Pedido")]
         public void Pedido_AplicarVoucherValido_DeveRetornarSemErros()
@@ -235,7 +235,7 @@ namespace NerdStore.Vendas.Domain.Tests
             var voucher = new Voucher("PROMO-15-OFF", 15, null, 1,
                 TipoDescontoVoucher.Porcentagem, DateTime.Now.AddDays(10), true, false);
 
-            var valorDesconto = (pedido.ValorTotal * voucher.PercentualDesconto) / 100;
+            var valorDesconto = (pedido.ValorTotal * voucher.Percentual) / 100;
             var valorTotalComDesconto = pedido.ValorTotal - valorDesconto;
 
             // Act
@@ -286,6 +286,6 @@ namespace NerdStore.Vendas.Domain.Tests
             // Assert
             var totalEsperado = pedido.PedidoItems.Sum(i => i.Quantidade * i.ValorUnitario) - voucher.ValorDesconto;
             Assert.Equal(totalEsperado, pedido.ValorTotal);
-        }*/
+        }
     }
 }

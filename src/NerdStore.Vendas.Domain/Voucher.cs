@@ -86,6 +86,8 @@ namespace NerdStore.Vendas.Domain
                     .NotNull()
                     .WithMessage(PercentualDescontoErroMsg)
                     .GreaterThan(0)
+                    .WithMessage(PercentualDescontoErroMsg)
+                    .LessThanOrEqualTo(100)
                     .WithMessage(PercentualDescontoErroMsg);
             });
         }
