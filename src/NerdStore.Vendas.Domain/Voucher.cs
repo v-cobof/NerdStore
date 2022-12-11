@@ -33,6 +33,8 @@ namespace NerdStore.Vendas.Domain
             Utilizado = utilizado;
         }
 
+        public Voucher() { }
+
         internal ValidationResult ValidarSeAplicavel()
         {
             return new VoucherAplicavelValidation().Validate(this);
